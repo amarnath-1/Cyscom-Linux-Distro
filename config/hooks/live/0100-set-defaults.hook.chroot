@@ -3,11 +3,23 @@ set -e
 
 echo "=== Setting XFCE Defaults ==="
 
-WALLPAPER="/usr/share/backgrounds/default-wallpaper.png"
+# Ensure backgrounds directory exists
+mkdir -p /usr/share/backgrounds
+
+# Verify wallpaper file exists
+if [ -f /usr/share/backgrounds/default-wallpaper.png ]; then
+    echo "✓ Wallpaper found!"
+    WALLPAPER="/usr/share/backgrounds/default-wallpaper.png"
+else
+    echo "✗ WARNING: Custom wallpaper not found, using Debian default"
+    WALLPAPER="/usr/share/images/desktop-base/desktop-grub.png"
+fi
+
+# Create XFCE config directory
 SKEL_XFCE="/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml"
 mkdir -p "$SKEL_XFCE"
 
-# Set wallpaper
+# Set wallpaper for all users
 cat > "$SKEL_XFCE/xfce4-desktop.xml" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <channel name="xfce4-desktop" version="1.0">
@@ -20,10 +32,19 @@ cat > "$SKEL_XFCE/xfce4-desktop.xml" << EOF
           <property name="last-image" type="string" value="$WALLPAPER"/>
         </property>
       </property>
+      <property name="monitorVirtual1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="$WALLPAPER"/>
+        </property>
+      </property>
     </property>
   </property>
 </channel>
 EOF
 
 chmod 644 "$SKEL_XFCE"/*.xml
-echo "=== Done ==="
+
+echo "=== XFCE defaults configured ==="
+echo "Wallpaper set to: $WALLPAPER"
