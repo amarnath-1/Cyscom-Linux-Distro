@@ -30,8 +30,6 @@ tcpdump
 ettercap-text-only
 dsniff
 
-# Exploitation Frameworks
-exploitdb
 
 # General Utilities
 curl

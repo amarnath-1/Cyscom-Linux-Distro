@@ -1,9 +1,32 @@
+# Build artifacts
 binary/
+binary.*/
 cache/
 chroot/
-*.iso
-*.img
-*.log
+chroot.*/
 .build/
 .stage
+
+# Generated files
+*.iso
+*.img
+*.list
+*.packages
+*.files
+*.log
+
+# Temporary files
 *~
+*.swp
+*.swo
+.DS_Store
+
+# Wget logs
+wget-log*
+
+# Python
+__pycache__/
+*.pyc
+
+# Don't ignore package lists (these are source files)
+!config/package-lists/*.list.chroot
