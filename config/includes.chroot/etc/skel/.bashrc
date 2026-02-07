@@ -6,8 +6,12 @@ alias ls='ls --color=auto'
 alias ll='ls -lah --color=auto'
 alias grep='grep --color=auto'
 
-# CysCom ASCII Banner
-cat << "EOF"
+# Show CysCom Banner on new terminal
+if [ -f ~/.cyscom_banner_shown ]; then
+    rm ~/.cyscom_banner_shown
+else
+    clear
+    cat << "EOF"
   ____           ____                  
  / ___|   _ ___ / ___|___  _ __ ___  
 | |  | | | / __| |   / _ \| '_ ` _ \ 
@@ -15,8 +19,9 @@ cat << "EOF"
  \____\__, |___/\____\___/|_| |_| |_|
       |___/  Security OS v1.0                        
 EOF
-
-echo ""
-echo "Welcome to CysCom Security OS - Cybersecurity Training Platform"
-echo "Type 'cyshelp' for available tools"
-echo ""
+    echo ""
+    echo "Welcome to CysCom Security OS - Cybersecurity Training Platform"
+    echo "Type 'cyshelp' for available tools"
+    echo ""
+    touch ~/.cyscom_banner_shown
+fi

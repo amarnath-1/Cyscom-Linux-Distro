@@ -1,4 +1,50 @@
+# Network Scanning & Reconnaissance
 nmap
-wireshark
+netcat-traditional
+dnsutils
+whois
+traceroute
+
+# Password Attacks
+hydra
+john
+medusa
+
+# Wireless Security
 aircrack-ng
-firefox-esr
+
+# Web Application Security
+sqlmap
+dirb
+
+# Forensics & Data Recovery
+binwalk
+foremost
+exiftool
+steghide
+
+# Network Sniffing & Analysis
+wireshark
+tshark
+tcpdump
+ettercap-text-only
+dsniff
+
+# Exploitation Frameworks
+exploitdb
+
+# General Utilities
+curl
+wget
+git
+socat
+netcat-openbsd
+
+# Python & Development
+python3
+python3-pip
+python3-requests
+python3-scapy
+
+
+

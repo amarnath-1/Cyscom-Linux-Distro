@@ -1,4 +1,55 @@
+# Desktop Environment
 xfce4
 xfce4-goodies
+xfce4-terminal
 lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
 network-manager-gnome
+desktop-base
+
+# Browsers & Apps
+firefox-esr
+
+# Editors
+vim
+nano
+gedit
+mousepad
+
+# Terminal Emulators
+terminator
+
+# System Utilities
+htop
+neofetch
+tree
+git
+curl
+wget
+
+# File Management
+thunar
+thunar-archive-plugin
+file-roller
+p7zip-full
+zip
+unzip
+rar
+unrar
+
+# Network Tools
+net-tools
+iputils-ping
+iproute2
+
+# Fonts
+fonts-dejavu
+fonts-liberation
+
+# Screenshots
+scrot
+
+# Plymouth (boot screen)
+plymouth
+plymouth-themes

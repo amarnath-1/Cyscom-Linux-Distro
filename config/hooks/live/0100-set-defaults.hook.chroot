@@ -45,6 +45,10 @@ cat > "$SKEL_XFCE/xfce4-desktop.xml" << EOF
 EOF
 
 chmod 644 "$SKEL_XFCE"/*.xml
+# Ensure bashrc is executable and will run
+chmod 644 /etc/skel/.bashrc
+
+echo "✓ Bash configuration applied"
 
 echo "=== XFCE defaults configured ==="
 echo "Wallpaper set to: $WALLPAPER"
