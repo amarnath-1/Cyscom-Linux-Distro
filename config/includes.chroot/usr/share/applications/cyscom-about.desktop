@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=About Cyscom OS
+Comment=Information about CysCom Security OS
+Exec=sh -c 'neofetch && echo "" && cyshelp && read -p "Press Enter to close..."'
+Icon=/usr/share/pixmaps/cyslogo.png
+Terminal=true
+Categories=System;

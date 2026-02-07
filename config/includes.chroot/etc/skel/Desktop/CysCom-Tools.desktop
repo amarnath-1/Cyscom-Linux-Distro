@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cyscom Security Tools
+Comment=Launch security tools collection
+Exec=cyshelp
+Icon=/usr/share/pixmaps/cyslogo.png
+Terminal=true
+Categories=System;Security;

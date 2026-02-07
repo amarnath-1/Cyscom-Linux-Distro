@@ -1,0 +1,10 @@
+PRETTY_NAME="CysCom Security OS"
+NAME="CysCom"
+VERSION_ID="1.0"
+VERSION="1.0 (Nebula)"
+VERSION_CODENAME=nebula
+ID=cyscom
+ID_LIKE=debian
+HOME_URL=""
+SUPPORT_URL=""
+BUG_REPORT_URL=""

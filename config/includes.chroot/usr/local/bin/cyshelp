@@ -1,0 +1,35 @@
+#!/bin/bash
+
+cat << "EOF"
+╔══════════════════════════════════════════════════════════════════╗
+║                 CysCom Security OS - Tool List                   ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📡 NETWORK SCANNING:
+   nmap, masscan, nikto, whatweb, enum4linux
+
+🔐 PASSWORD CRACKING:
+   hydra, john, hashcat, medusa
+
+📶 WIRELESS SECURITY:
+   aircrack-ng, reaver, kismet
+
+🌐 WEB APPLICATION TESTING:
+   sqlmap, wpscan, dirb, gobuster
+
+💥 EXPLOITATION:
+   metasploit-framework, exploitdb
+
+🔍 FORENSICS & ANALYSIS:
+   binwalk, foremost, exiftool, steghide
+
+🕵️  SNIFFING & MITM:
+   wireshark, tcpdump, ettercap, dsniff
+
+🐍 DEVELOPMENT:
+   python3, pip, git, vim, nano
+
+╔══════════════════════════════════════════════════════════════════╗
+║  For detailed help: man <tool-name> or <tool-name> --help       ║
+╚══════════════════════════════════════════════════════════════════╝
+EOF
