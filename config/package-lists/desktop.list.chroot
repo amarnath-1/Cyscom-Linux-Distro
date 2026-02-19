@@ -53,3 +53,7 @@ scrot
 # Plymouth (boot screen)
 plymouth
 plymouth-themes
+
+
+zenity
+openssl

@@ -1,0 +1,42 @@
+#!/bin/bash
+echo "════════════════════════════════════════════════════════"
+echo "🔵 Cyscom System Health Monitor"
+echo "════════════════════════════════════════════════════════"
+echo "Hostname: $(hostname)"
+echo "Date: $(date)"
+echo "════════════════════════════════════════════════════════"
+echo ""
+echo "[1/5] 🖥️  CPU Status"
+echo "─────────────────────────────────────────────────────────"
+top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print "CPU Usage: " 100 - $1"%"}'
+lscpu | grep "Model name"
+echo ""
+echo "[2/5] 💾 Memory Status"
+echo "─────────────────────────────────────────────────────────"
+free -h
+MEMORY_PERCENT=$(free | grep Mem | awk '{printf("%.0f"), $3/$2 * 100.0}')
+echo "Memory Usage: ${MEMORY_PERCENT}%"
+echo ""
+echo "[3/5] 💿 Disk Status"
+echo "─────────────────────────────────────────────────────────"
+df -h | grep -E '^/dev/'
+echo ""
+echo "[4/5] 🌐 Network Status"
+echo "─────────────────────────────────────────────────────────"
+ip -br addr show | grep UP
+echo "Testing network latency..."
+ping -c 4 8.8.8.8 | tail -1
+echo ""
+echo "[5/5] 🔋 Battery Status"
+echo "─────────────────────────────────────────────────────────"
+if [ -f /sys/class/power_supply/BAT0/capacity ]; then
+    BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
+    STATUS=$(cat /sys/class/power_supply/BAT0/status)
+    echo "Battery: ${BATTERY}% (${STATUS})"
+else
+    echo "Battery: N/A (Desktop or VM)"
+fi
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "✅ System check complete!"
+echo "════════════════════════════════════════════════════════"

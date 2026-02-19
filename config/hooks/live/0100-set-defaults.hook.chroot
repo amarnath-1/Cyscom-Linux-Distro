@@ -52,3 +52,7 @@ echo "✓ Bash configuration applied"
 
 echo "=== XFCE defaults configured ==="
 echo "Wallpaper set to: $WALLPAPER"
+echo "=== Setting Custom Boot Screen ==="
+update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/cyscom/cyscom.plymouth 100
+update-alternatives --set default.plymouth /usr/share/plymouth/themes/cyscom/cyscom.plymouth
+echo "✓ Plymouth configured"

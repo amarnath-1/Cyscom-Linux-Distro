@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Cyscom Security OS
+Description=Cyscom Security OS Boot Theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/cyscom
+ScriptFile=/usr/share/plymouth/themes/cyscom/cyscom.script

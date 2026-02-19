@@ -1,0 +1,5 @@
+#!/bin/bash
+zenity --question --title="Cyscom System Health" --text="Run complete system diagnostics?\n\nChecks: CPU, Memory, Disk, Network, Battery" --width=400
+if [ $? -eq 0 ]; then
+    x-terminal-emulator -e bash -c "cyssyscheck; echo ''; echo 'Press Enter to close...'; read"
+fi

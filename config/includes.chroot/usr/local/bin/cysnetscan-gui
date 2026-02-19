@@ -1,0 +1,6 @@
+#!/bin/bash
+TARGET=$(zenity --entry --title="Cyscom Network Scanner" --text="Enter target IP or hostname:" --entry-text="192.168.1.1")
+if [ -z "$TARGET" ]; then
+    exit 0
+fi
+x-terminal-emulator -e bash -c "cysnetscan $TARGET; echo ''; echo 'Press Enter to close...'; read"

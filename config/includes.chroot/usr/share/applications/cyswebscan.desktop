@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cyscom Web Scanner
+Comment=Web security scanner
+Exec=cyswebscan-gui
+Icon=/usr/share/pixmaps/cyslogo.png
+Terminal=false
+Categories=Network;Security;

@@ -1,35 +1,36 @@
 #!/bin/bash
-
 cat << "EOF"
 ╔══════════════════════════════════════════════════════════════════╗
-║                 CysCom Security OS - Tool List                   ║
+║                Cyscom Security OS - Tool List                    ║
 ╚══════════════════════════════════════════════════════════════════╝
 
+🎯 CYSCOM CUSTOM TOOLS:
+   cysnetscan <target>     - Complete network security scan
+   cyssyscheck             - System health diagnostics  
+   cyswebscan <url>        - Web application security scan
+
 📡 NETWORK SCANNING:
-   nmap, masscan, nikto, whatweb, enum4linux
+   nmap, netcat, dnsutils, whois, traceroute
 
 🔐 PASSWORD CRACKING:
-   hydra, john, hashcat, medusa
+   hydra, john, medusa
 
 📶 WIRELESS SECURITY:
-   aircrack-ng, reaver, kismet
+   aircrack-ng
 
 🌐 WEB APPLICATION TESTING:
-   sqlmap, wpscan, dirb, gobuster
-
-💥 EXPLOITATION:
-   metasploit-framework, exploitdb
+   sqlmap, dirb
 
 🔍 FORENSICS & ANALYSIS:
    binwalk, foremost, exiftool, steghide
 
 🕵️  SNIFFING & MITM:
-   wireshark, tcpdump, ettercap, dsniff
+   wireshark, tshark, tcpdump, ettercap, dsniff
 
 🐍 DEVELOPMENT:
    python3, pip, git, vim, nano
 
 ╔══════════════════════════════════════════════════════════════════╗
-║  For detailed help: man <tool-name> or <tool-name> --help       ║
+║  GUI Tools: Applications Menu → Cyscom Tools                     ║
 ╚══════════════════════════════════════════════════════════════════╝
 EOF

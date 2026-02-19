@@ -1,0 +1,9 @@
+#!/bin/bash
+URL=$(zenity --entry --title="Cyscom Web Scanner" --text="Enter website URL:" --entry-text="example.com")
+if [ -z "$URL" ]; then
+    exit 0
+fi
+zenity --warning --title="Legal Warning" --text="Only scan websites you own or have permission!\n\nUnauthorized scanning is illegal." --width=400
+if [ $? -eq 0 ]; then
+    x-terminal-emulator -e bash -c "cyswebscan $URL; echo ''; echo 'Press Enter to close...'; read"
+fi

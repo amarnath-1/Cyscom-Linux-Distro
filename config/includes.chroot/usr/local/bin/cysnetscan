@@ -1,0 +1,33 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Usage: cysnetscan <target>"
+    echo "Example: cysnetscan 192.168.1.1"
+    exit 1
+fi
+TARGET=$1
+echo "════════════════════════════════════════════════════════"
+echo "🔵 Cyscom Network Security Scanner"
+echo "════════════════════════════════════════════════════════"
+echo "Target: $TARGET"
+echo "Started: $(date)"
+echo "════════════════════════════════════════════════════════"
+echo ""
+echo "[1/5] 🔍 Checking if target is alive..."
+ping -c 3 $TARGET
+echo ""
+echo "[2/5] 🔓 Scanning for open ports..."
+nmap -F $TARGET
+echo ""
+echo "[3/5] 🔎 Detecting services..."
+nmap -sV --top-ports 10 $TARGET
+echo ""
+echo "[4/5] 💻 Detecting operating system..."
+sudo nmap -O $TARGET
+echo ""
+echo "[5/5] 🌐 Performing DNS lookup..."
+nslookup $TARGET
+dig $TARGET
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "✅ Network scan complete!"
+echo "════════════════════════════════════════════════════════"

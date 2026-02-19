@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cyscom System Health
+Comment=System diagnostics
+Exec=cyssyscheck-gui
+Icon=/usr/share/pixmaps/cyslogo.png
+Terminal=false
+Categories=System;Monitor;
