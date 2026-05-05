@@ -39,7 +39,10 @@ cat > "$SKEL_XFCE/xfce4-desktop.xml" << EOF
           <property name="last-image" type="string" value="$WALLPAPER"/>
         </property>
       </property>
-    </property>
+    </proper  </property>
+  </property>
+  </property>
+  </property>
   </property>
 </channel>
 EOF
@@ -49,8 +52,8 @@ mkdir -p "$TERM_CONFIG"
 cat > "$TERM_CONFIG/terminalrc" << 'TERMEOF'
 [Configuration]
 ColorBackground=#000000
-ColorForeground=#00BFFF
-ColorPalette=#000000;#FF0000;#00FF00;#FFFF00;#0080FF;#FF00FF;#00BFFF;#FFFFFF;#333333;#FF6060;#60FF60;#FFFF60;#60A0FF;#FF60FF;#60CFFF;#FFFFFF
+ColorForeground=#00FFFF
+ColorPalette=#000000;#FF0000;#00FF00;#FFFF00;#0080FF;#FF00FF;#00FFFF;#FFFFFF;#808080;#FF6060;#60FF60;#FFFF60;#60A0FF;#FF60FF;#60FFFF;#FFFFFF
 FontName=Monospace 11
 MiscCursorBlinks=TRUE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK

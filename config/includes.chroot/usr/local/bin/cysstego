@@ -1,0 +1,38 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Usage: cysstego <image>"
+    exit 1
+fi
+FILE=$1
+if [ ! -f "$FILE" ]; then
+    echo "Error: File not found!"
+    exit 1
+fi
+echo "════════════════════════════════════════════════════════"
+echo "🔵 Cyscom Steganography Hunter"
+echo "════════════════════════════════════════════════════════"
+echo "Target: $FILE"
+echo "════════════════════════════════════════════════════════"
+echo ""
+echo "[1/5] 🖼️  Image metadata..."
+exiftool "$FILE" 2>/dev/null | grep -i "comment\|description" || echo "No metadata"
+echo ""
+echo "[2/5] 🔍 Searching for embedded files..."
+binwalk "$FILE" 2>/dev/null || echo "binwalk not available"
+foremost -i "$FILE" -o /tmp/foremost_out 2>/dev/null
+echo ""
+echo "[3/5] 🎭 Steghide extraction..."
+for pass in "" "password" "123456" "secret" "hidden"; do
+    echo "Trying password: '$pass'"
+    steghide extract -sf "$FILE" -p "$pass" -xf /tmp/extracted.txt 2>/dev/null && echo "✅ SUCCESS: '$pass'" && cat /tmp/extracted.txt && break
+done
+echo ""
+echo "[4/5] 📊 LSB analysis..."
+xxd "$FILE" | tail -10
+echo ""
+echo "[5/5] 🔤 Flag search..."
+strings "$FILE" | grep -E "flag|ctf|password|key" -i | head -10 || echo "No flags"
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "✅ Stego scan complete!"
+echo "════════════════════════════════════════════════════════"

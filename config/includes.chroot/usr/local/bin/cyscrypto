@@ -1,0 +1,30 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Usage: cyscrypto <encoded_text>"
+    exit 1
+fi
+TEXT="$1"
+echo "════════════════════════════════════════════════════════"
+echo "🔵 Cyscom Crypto Analyzer"
+echo "════════════════════════════════════════════════════════"
+echo "Input: $TEXT"
+echo "════════════════════════════════════════════════════════"
+echo ""
+echo "[1/5] 🔓 Base64 decode..."
+echo "$TEXT" | base64 -d 2>/dev/null && echo "" || echo "Not Base64"
+echo ""
+echo "[2/5] 🔓 Base32 decode..."
+echo "$TEXT" | base32 -d 2>/dev/null && echo "" || echo "Not Base32"
+echo ""
+echo "[3/5] 🔓 Hex decode..."
+echo "$TEXT" | xxd -r -p 2>/dev/null && echo "" || echo "Not Hex"
+echo ""
+echo "[4/5] 🔓 ROT13..."
+echo "$TEXT" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+echo ""
+echo "[5/5] 🔓 URL decode..."
+python3 -c "import sys; from urllib.parse import unquote; print(unquote('$TEXT'))" 2>/dev/null
+echo ""
+echo "════════════════════════════════════════════════════════"
+echo "✅ Crypto analysis complete!"
+echo "════════════════════════════════════════════════════════"
