@@ -14,25 +14,34 @@ echo "════════════════════════�
 echo "Target: $FILE"
 echo "════════════════════════════════════════════════════════"
 echo ""
-echo "[1/5] 🖼️  Image metadata..."
-exiftool "$FILE" 2>/dev/null | grep -i "comment\|description" || echo "No metadata"
+echo "[1/5] 🖼️  Metadata extraction..."
+exiftool "$FILE" 2>/dev/null | grep -iE "comment|description|software|make" | head -10 || echo "No suspicious metadata"
 echo ""
-echo "[2/5] 🔍 Searching for embedded files..."
-binwalk "$FILE" 2>/dev/null || echo "binwalk not available"
-foremost -i "$FILE" -o /tmp/foremost_out 2>/dev/null
+echo "[2/5] 🔍 Embedded file detection (binwalk)..."
+binwalk -e "$FILE" 2>/dev/null | head -20 || echo "No embedded files found"
 echo ""
-echo "[3/5] 🎭 Steghide extraction..."
-for pass in "" "password" "123456" "secret" "hidden"; do
-    echo "Trying password: '$pass'"
-    steghide extract -sf "$FILE" -p "$pass" -xf /tmp/extracted.txt 2>/dev/null && echo "✅ SUCCESS: '$pass'" && cat /tmp/extracted.txt && break
+echo "[3/5] 🎭 Password-based extraction (steghide)..."
+echo "Trying common passwords..."
+for pass in "" "password" "123456" "secret" "hidden" "admin" "test"; do
+    result=$(steghide extract -sf "$FILE" -p "$pass" -xf /tmp/extracted_$$.txt 2>&1)
+    if echo "$result" | grep -q "wrote"; then
+        echo "✅ SUCCESS with password: '$pass'"
+        echo "Extracted content:"
+        cat /tmp/extracted_$$.txt
+        rm /tmp/extracted_$$.txt
+        break
+    fi
 done
 echo ""
-echo "[4/5] 📊 LSB analysis..."
-xxd "$FILE" | tail -10
+echo "[4/5] 📊 File structure analysis..."
+echo "Checking for concatenated files..."
+tail -c 1000 "$FILE" | strings | grep -E "flag|ctf|password|key" -i | head -5 || echo "No obvious text patterns"
 echo ""
-echo "[5/5] 🔤 Flag search..."
-strings "$FILE" | grep -E "flag|ctf|password|key" -i | head -10 || echo "No flags"
+echo "[5/5] 🔤 Deep string search..."
+strings "$FILE" | grep -E "flag\{|ctf\{|key\{|password" -i | head -10 || echo "No flags found in strings"
 echo ""
 echo "════════════════════════════════════════════════════════"
-echo "✅ Stego scan complete!"
+echo "✅ Analysis complete!"
+echo "💡 TIP: Check extracted files with 'file /tmp/_*.extracted/*'"
 echo "════════════════════════════════════════════════════════"
+EOF
